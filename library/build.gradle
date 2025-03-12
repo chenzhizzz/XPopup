@@ -14,19 +14,22 @@ publishing {
             version  = "2.10.13"
 
 //             必须有这个 否则不会上传AAR包
-                afterEvaluate { artifact(tasks.getByName("bundleReleaseAar")) }
+               // afterEvaluate { artifact(tasks.getByName("bundleReleaseAar")) }
             // 上传source，这样使用方可以看到方法注释
-                artifact generateSourcesJar
+               // artifact generateSourcesJar
             //artifact "$buildDir/outputs/aar/${project.getName()}-debug.aar" //要上传的aar路径
+            afterEvaluate {
+                from components.release
+            }
         }
     }
 }
 
 // 增加上传源码的task
-task sourceJar(type: Jar) {
-    from android.sourceSets.main.java.srcDirs
-    archiveClassifier = "sources"
-}
+//task sourceJar(type: Jar) {
+//    from android.sourceSets.main.java.srcDirs
+//    archiveClassifier = "sources"
+//}
 
 android {
     compileSdkVersion 30
