@@ -4,23 +4,31 @@ plugins {
     id 'com.android.library'
 }
 
-publishing {
-    publications {
-        // 定义一个名为 Production 的发布
-        release(MavenPublication) {
+afterEvaluate {
+    publishing {
+        publications {
+            // 定义一个名为 Production 的发布
+            mavenJava(MavenPublication) {
 
-            groupId = "com.github.chenzhizzz"
-            artifactId = "XPopup"
-            version  = "2.10.13"
-
+                groupId = "com.github.chenzhizzz"
+                artifactId = "XPopup"
+                version  = "2.10.13"
+                from components.java
 //             必须有这个 否则不会上传AAR包
-               // afterEvaluate { artifact(tasks.getByName("bundleReleaseAar")) }
-            // 上传source，这样使用方可以看到方法注释
-               // artifact generateSourcesJar
-            //artifact "$buildDir/outputs/aar/${project.getName()}-debug.aar" //要上传的aar路径
-            afterEvaluate {
-                from components.release
+                // afterEvaluate { artifact(tasks.getByName("bundleReleaseAar")) }
+                // 上传source，这样使用方可以看到方法注释
+                // artifact generateSourcesJar
+                //artifact "$buildDir/outputs/aar/${project.getName()}-debug.aar" //要上传的aar路径
+//                afterEvaluate {
+//                    from components.java
+//                }
             }
+            repositories {
+                maven {
+                    url = uri('../repo')
+                }
+            }
+
         }
     }
 }
