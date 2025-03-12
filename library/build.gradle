@@ -3,11 +3,11 @@ apply plugin: 'maven-publish'
 
 
 // 唯一标识
-def GROUP_ID = "com.gitee.chenzhizzz"
+def GROUP_ID = "com.github.chenzhizzz"
 // 项目名称
-def ARTIFACT_ID = "xpopup"
+def ARTIFACT_ID = "XPopup"
 // 版本号
-def VERSION = "2.10.1"
+def VERSION = "2.10.11"
 
 group GROUP_ID  //一定要加入，否者发布编译时报错
 version VERSION
