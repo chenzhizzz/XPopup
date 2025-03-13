@@ -125,7 +125,7 @@ publishing {
 
             groupId = "com.github.chenzhizzz"
             artifactId = "XPopup"
-            version  = "2.10.15"
+            version  = "2.10.03"
 
             artifact sourceJar
             // 依赖传递
