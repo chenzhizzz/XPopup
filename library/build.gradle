@@ -4,40 +4,81 @@ plugins {
     id 'com.android.library'
 }
 
-afterEvaluate {
-    publishing {
-        publications {
-            // 定义一个名为 Production 的发布
-            mavenJava(MavenPublication) {
-
-                groupId = "com.github.chenzhizzz"
-                artifactId = "XPopup"
-                version  = "2.10.13"
-                from components.java
-//             必须有这个 否则不会上传AAR包
-                // afterEvaluate { artifact(tasks.getByName("bundleReleaseAar")) }
-                // 上传source，这样使用方可以看到方法注释
-                // artifact generateSourcesJar
-                //artifact "$buildDir/outputs/aar/${project.getName()}-debug.aar" //要上传的aar路径
-//                afterEvaluate {
-//                    from components.java
-//                }
-            }
-            repositories {
-                maven {
-                    url = uri('../repo')
-                }
-            }
-
-        }
-    }
-}
+//afterEvaluate {
+//    publishing {
+//        publications {
+//            // 定义一个名为 Production 的发布
+//            release(MavenPublication) {
+//
+//                groupId = "com.github.chenzhizzz"
+//                artifactId = "XPopup"
+//                version  = "2.10.13"
+//
+////             必须有这个 否则不会上传AAR包
+//                 //afterEvaluate { artifact(tasks.getByName("bundleReleaseAar")) }
+//                // 上传source，这样使用方可以看到方法注释
+//                // artifact generateSourcesJar
+//                artifact "$buildDir/outputs/aar/${project.getName()}.aar" //要上传的aar路径
+////                afterEvaluate {
+////                    from components.java
+////                }
+//            }
+//
+//
+//        }
+//    }
+//}
 
 // 增加上传源码的task
 //task sourceJar(type: Jar) {
 //    from android.sourceSets.main.java.srcDirs
 //    archiveClassifier = "sources"
 //}
+
+
+//
+//task makeJar(type: Copy) {
+//
+////删除存在的
+//
+//    delete 'build/libs/thermelcontrol.jar'
+//
+////设置拷贝的文件
+//
+//// from('build/intermediates/bundles/release/')
+//
+//    from('build/intermediates/runtime_library_classes_jar/debug')
+//
+////打进jar包后的文件目录
+//
+//    into('build/libs/')
+//
+////将classes.jar放入build/libs/目录下
+//
+////include ,exclude参数来设置过滤
+//
+////（我们只关心classes.jar这个文件）
+//
+//    include('classes.jar')
+//
+////重命名
+//
+//    rename ('classes.jar', 'Xpopup.jar')
+//
+//}
+//
+//
+//task libraryJar(type: Jar) {
+//    archiveClassifier = 'library'
+////    from {
+////        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+////    }
+//    destinationDirectory = file("$buildDir/libs")
+//    // 排除不需要的文件，比如R.class和BuildConfig.class
+////    exclude '**/R.class', '**/R$*.class', '**/BuildConfig.*'
+//}
+
+
 
 android {
     compileSdkVersion 30
